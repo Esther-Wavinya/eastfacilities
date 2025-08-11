@@ -42,11 +42,11 @@ SET BEFORE "index.css"
 
 # Libraries and Packages
 ## setting up backend
-`cd eastfacilities`
-`echo "Setting up backend..."`
-`mkdir backend`
-`cd backend`
-`npm init -y`
+1. `cd eastfacilities`
+2. `echo "Setting up backend..."`
+3. `mkdir backend`
+4. `cd backend`
+5. `npm init -y`
 
 `npm install express@4.19.2 mongoose@8.3.4 cors@2.8.5 dotenv@16.4.5`
 <ol>
