@@ -120,11 +120,14 @@ In short:
 </ul>
 </ol>
 In your app:
-- mpesa-api → Mobile money payments
-- stripe → Card payments
-- jsonwebtoken → Authentication security
-- bcryptjs → Password protection
-- express-validator → Input validation
+<ul>
+<li>mpesa-api → Mobile money payments</li>
+<li>stripe → Card payments</li>
+<li>jsonwebtoken → Authentication security</li>
+<li>bcryptjs → Password protection</li>
+<li>express-validator → Input validation</li>
+</ul>
+
 
 
 
