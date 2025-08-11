@@ -18,20 +18,20 @@ Install the following extensions in the VS Code: ES7 + React/Redux/React-Native 
 
 Use [Vite](https://vite.dev/) for React Tooling. 
 Then:
-Check version of npm and node, npm --version and node --version respectfully. 
+Check version of npm and node, `npm --version` and `node --version` respectfully. 
 Otherwise download [Node](https://nodejs.org/en/download)
 
-cd the location you would like to put your project, either Desktop or Downloads or Documents,,, then run 'npm create vite@latest eastfacilities -- --template react'
+cd the location you would like to put your project, either Desktop or Downloads or Documents,,, then run `npm create vite@latest eastfacilities -- --template react`
 
-Open the project in the VS Code. On the terminal run 'npm install' and run the code 'npm run dev' this will give you the local host server where to see your project as you make changes.
+Open the project in the VS Code. On the terminal run `npm install` and run the code `npm run dev` this will give you the local host server where to see your project as you make changes.
 
 ## Global Styles
 - Less lines of Code for Styling in CSS under index.css in both assets and public folders
 - These styles speed up development, avoid repeating code
 - [Normalize.css](https://necolas.github.io/normalize.css/)
 - small CSS file that provides cross-browser consistency in the default styling of HTML elements
-'npm install normalize.css'
--import "normaliza.css" in index.js
+- 'npm install normalize.css'
+- import "normaliza.css" in index.js
 SET BEFORE "index.css"
 - replace contents of index.css
 
