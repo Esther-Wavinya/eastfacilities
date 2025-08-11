@@ -30,7 +30,7 @@ Open the project in the VS Code. On the terminal run 'npm install' and run the c
 - These styles speed up development, avoid repeating code
 
 ## Title and Favicon
-- Add (favicon.icon)[https://favicon.io/favicon-converter/] in the public folder
+- Add [favicon.icon](https://favicon.io/favicon-converter/) in the public folder
 - Change title and favicon in index.html
 
 
