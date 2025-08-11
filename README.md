@@ -56,7 +56,7 @@ SET BEFORE "index.css"
 <li>Handles **HTTP requests** (GET, POST, PUT, DELETE) and routes them to your logic</li>
 <li>Examples: When a user checks room availability, Express listens at '/availability' and runs the correct handler.</li>
 </ul>
-<li>**mongoose@8.3.4**</li>
+<li>mongoose@8.3.4</li>
 <ul>
 <li>MongoDB object modeling tool</li>
 <li>Lets you define **schemas** and interact with MongoDB in a clean, structured way.</li>
@@ -93,21 +93,31 @@ In short:
 `npm install mpesa-api stripe@14.21.0 jsonwebtoken@9.0.2 bcryptjs@2.4.3 express-validator@7.0.1`
 <ol>
 <li>mpesa-api</li>
-- Library for integrating Safaricom **M-PESA Daraja API**
-- You'll use it for mobile money payments in Kenya
+<ul>
+<li>Library for integrating Safaricom **M-PESA Daraja API**</li>
+<li>You'll use it for mobile money payments in Kenya</li>
+</ul>
 <li>stripe@14.21.0</li>
-- Stripe's official Node.js SDK.
-- Handles **credit/debit card* and other online payments (Apple Pay, Google Pay, etc.).
-- You'll use it for international/online card payments.
+<ul>
+<li>Stripe's official Node.js SDK.</li>
+<li>Handles **credit/debit card* and other online payments (Apple Pay, Google Pay, etc.)</li>
+<li>You'll use it for international/online card payments.</li>
+</ul>
 <li>jsonwebtoken@9.0.2</li>
-- For creating and verifying **JWT tokens.**
-- Commonly used for **user aunthentication** — e.g., log in, generate a token, and protect routes.
+<ul>
+<li>For creating and verifying **JWT tokens.**</li>
+<li>Commonly used for **user aunthentication** — e.g., log in, generate a token, and protect routes.</li>
+</ul>
 <li>bcryptjs@2.4.3</li>
-- Library for **hashing passwords** before storing them in the database.
-- Also used to compare entered passwords with stored hashes securely
+<ul>
+<li>Library for **hashing passwords** before storing them in the database.</li>
+<li>Also used to compare entered passwords with stored hashes securely</li>
+</ul> 
 <li>express-validator@7.0.1</li>
-- Middleware for **validating and sanitizing** incoming request data in Express.
-- Examples: Ensures email format is correct, passwords meet length rules, etc.
+<ul>
+<li>Middleware for **validating and sanitizing** incoming request data in Express.</li>
+<li>Examples: Ensures email format is correct, passwords meet length rules, etc.</li>
+</ul>
 </ol>
 In your app:
 - mpesa-api → Mobile money payments
