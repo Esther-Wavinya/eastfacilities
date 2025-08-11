@@ -174,6 +174,13 @@ In your app:
 <li>Manages form state, validation, and submission efficiently (e.g., booking forma, payment forms).</li>
 </ul>
 </ol>
+ In your booking app:
+1. **next / react / react-dom** → The actual frontend framework & rendering engine.
+2. **axios** → Calls backend APIs for booking and payment.
+3. **swr** → Keeps room availability up-to-date in real-time.
+4. **react-hook-form** → Handles complex forms like "Book an Event" smoothly.
+
+
 
 
 
