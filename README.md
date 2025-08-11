@@ -183,6 +183,9 @@ In your app:
 </li>
  </ul>
 
+`cd ..`
+
+
 
 
 
