@@ -40,20 +40,22 @@ SET BEFORE "index.css"
 - Add [favicon.icon](https://favicon.io/favicon-converter/) in the public folder
 - Change title and favicon in index.html
 
-## Libraries and Packages
-### setting up backend
+# Libraries and Packages
+## setting up backend
 cd eastfacilities
 echo "Setting up backend..."
 mkdir backend
 cd backend
 npm init -y
 
-'npm install express@4.19.2 mongoose@8.3.4 cors@2.8.5 dotenv@16.4.5'
+`npm install express@4.19.2 mongoose@8.3.4 cors@2.8.5 dotenv@16.4.5`
 <ol>
 <li>express@4.19.2</li>
-- The web framework for your backend
-- Handles **HTTP requests** (GET, POST, PUT, DELETE) and routes them to your logic
-- Examples: When a user checks room availability, Express listens at '/availability' and runs the correct handler.
+<ul>
+<li>The web framework for your backend</li>
+<li>Handles **HTTP requests** (GET, POST, PUT, DELETE) and routes them to your logic</li>
+<li>Examples: When a user checks room availability, Express listens at '/availability' and runs the correct handler.</li>
+</ul>
 <li>mongoose@8.3.4</li>
 - MongoDB object modeling tool
 - Lets you define **schemas** and interact with MongoDB in a clean, structured way.
@@ -65,7 +67,7 @@ npm init -y
 - Loads **environment variables** from a '.env' file into 'process.env'
 - Example: Store API keys ( 'STRIPE_SECRET), database connection strings, etc., without hardcoding them.
 
-'npm install --save-dev nodemon@3.1.0'
+`npm install --save-dev nodemon@3.1.0`
 <li>nodemon@3.1.0</li>
 - Development tool that **automatically restarts** your server when you change backend code.
 - Saves time so you don't have to stop and restart 'node server.js' manually.
@@ -77,8 +79,8 @@ In short:
 - dotenv → Keeps secrets/config safe.
 - nodemon → Auto-restarts backend on changes.
 
-#### Optional advanced features
-'npm install mpesa-api stripe@14.21.0 jsonwebtoken@9.0.2 bcryptjs@2.4.3 express-validator@7.0.1'
+## Optional advanced features
+`npm install mpesa-api stripe@14.21.0 jsonwebtoken@9.0.2 bcryptjs@2.4.3 express-validator@7.0.1`
 <ol>
 <li>mpesa-api</li>
 - Library for integrating Safaricom **M-PESA Daraja API**
