@@ -28,6 +28,13 @@ Open the project in the VS Code. On the terminal run 'npm install' and run the c
 ## Global Styles
 - Less lines of Code for Styling in CSS under index.css in both assets and public folders
 - These styles speed up development, avoid repeating code
+- [Normalize.css](https://necolas.github.io/normalize.css/)
+- small CSS file that provides cross-browser consistency in the default styling of HTML elements
+'npm install normalize.css'
+-import "normaliza.css" in index.js
+SET BEFORE "index.css"
+- replace contents of index.css
+
 
 ## Title and Favicon
 - Add [favicon.icon](https://favicon.io/favicon-converter/) in the public folder
