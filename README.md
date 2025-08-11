@@ -128,8 +128,52 @@ In your app:
 <li>express-validator → Input validation</li>
 </ul>
 
+`cd ..`
+
+## Setting up Frontend
+### Frontend setup
+1. `echo "Setting up frontend..."`
+2. `mkdir frontend`
+3. `cd frontend`
+4. `npm init -y`
+
+`npm install next@14.1.4 react@18.3.1 react-dom@18.3.1`
+<ol>
+<li>next@14.1.4</li>
+<ul>
+<li>The **Next.js** framework (built on React) for your frontend</li>
+<li>Adds *server-side rendering (SSR)*, API routes, routing system, and better SEO support compared to plain React.</li>
+</ul>
+<li>react@18.3.1</li>
+<ul>
+<li>The core React library</li>
+<li>Provides the component based UI building blocks</li>
+</ul>
+<li>react-dom@18.3.1</li>
+<ul>
+<li>Bridges React with the browser's DOM</li>
+<li>Handles rendering React components into actual HTML elements</li>
+</ul>
 
 
+# Optional advanced frontend utilities
+`npm install axios@1.6.8 swr@2.2.4 react-hook-form@7.50.1`
+<li>axios@1.6.8</li>
+<ul>
+<li>HTTP client for making requests to your backend API (e.g., check availability, create bookings).</li>
+<li>More powerful than the built-in `fetch`</li>
+</ul>
+<li>swr@2.2.4</li>
+<ul>
+<li>Data fetching & caching libraru from Vercel (makers of Next.js).</li>
+<li>Perfect for **real-time availability updates** without manual refresh</li>
+</ul>
+<li>react-hook-form@7.50.1</li>
+<ul>
+<li>Simplifies form handling in React</li>
+<li>Manages form state, validation, and submission efficiently (e.g., booking forma, payment forms).</li>
+</ul>
+</ol>
 
 
 
