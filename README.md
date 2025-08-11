@@ -25,5 +25,14 @@ cd the location you would like to put your project, either Desktop or Downloads 
 
 Open the project in the VS Code. On the terminal run 'npm install' and run the code 'npm run dev' this will give you the local host server where to see your project as you make changes.
 
+## Global Styles
+- Less lines of Code for Styling in CSS under index.css in both assets and public folders
+- These styles speed up development, avoid repeating code
+
+## Title and Favicon
+- Add (favicon.icon)[https://favicon.io/favicon-converter/] in the public folder
+- Change title and favicon in index.html
+
+
 
 
