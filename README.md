@@ -176,11 +176,10 @@ In your app:
 </ol>
  In your booking app:
  <ul>
- <li>**next / react / react-dom** → The actual frontend framework & rendering engine.</li>
- <li>**axios** → Calls backend APIs for booking and payment.</li>
- <li>
-**swr** → Keeps room availability up-to-date in real-time.</li>
- <li>**react-hook-form** → Handles complex forms like "Book an Event" smoothly.
+ <li>next / react / react-dom → The actual frontend framework & rendering engine.</li>
+ <li>axios → Calls backend APIs for booking and payment.</li>
+ <li>swr → Keeps room availability up-to-date in real-time.</li>
+ <li>react-hook-form → Handles complex forms like "Book an Event" smoothly.
 </li>
  </ul>
 
