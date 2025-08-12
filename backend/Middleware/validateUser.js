@@ -132,7 +132,13 @@ export const validateUserRole = (role) => {
   };    
 };  
 
-
+export const validateUserRequest = (req, res, next) => { // Middleware function to validate request data
+  const errors = validationResult(req); // Check for validation errors
+  if (!errors.isEmpty()) { // If there are validation errors
+    return res.status(400).json({ errors: errors.array() }); // Respond with a 400 status code and the validation errors
+  }     
+    next(); // Call the next middleware or route handler    
+};      
 
 
 
