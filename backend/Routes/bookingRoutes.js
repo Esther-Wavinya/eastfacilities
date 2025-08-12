@@ -1,8 +1,7 @@
 import express from 'express';
 import Booking from '../Models/Booking';
-import { body, validationResult } from 'express-validator'; // Import express-validator for request validation
 import { authenticateToken } from '../Middleware/auth'; // Import authentication and authorization middleware)
-import { validateBookingCreate, validateBookingUpdate, validateBookingDelete, validateBookingRequest } from '../Middleware/validateBooking';   
+import { validateBookingCreate, validateBookingUpdate, validateBookingDelete } from '../Middleware/validateBooking';   
 
 const router = express.Router(); // Create a new router instance    
 
@@ -47,7 +46,6 @@ router.post('/', authenticateToken, validateBookingCreate, async (req, res) => {
         console.error('❌ Error creating booking:', error);         
         res.status(500).json({ error: 'Internal Server Error' }); // Respond with a 500 status code and an error message
     }     
-
 });
 
 
