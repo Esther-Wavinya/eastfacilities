@@ -1,5 +1,5 @@
 import { body, validationResult } from 'express-validator'; // Import express-validator for request validation
-
+import Booking from '../Models/Booking';
 
 export const validateBookingCreate = [
   body('facilityId')

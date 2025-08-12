@@ -2,14 +2,21 @@ import express from 'express'; // To create the web server
 import mongoose from 'mongoose'; // To connect and interact with MongoDB
 import cors from 'cors'; // To enable Cross-Origin Resource Sharing, allowing the API to be accessed from different origins or accept requests from different origins
 import dotenv from 'dotenv'; // To load environment variables from a .env file (like database URI, port, etc.)
+import { validateUserLogin }  from './Middleware/validateUser';
 
 dotenv.config(); // Load environment variables from .env file
 
 const app = express(); // Create an instance of Express
 
+
 // Middleware to handle CORS and JSON body parsing
 app.use(cors()); // Enable CORS for all routes, allowing requests from any origin
 app.use(express.json()); // Parse incoming JSON requests, allowing the server to understand JSON payloads
+
+// app.post("/login", validateUserLogin, (req, res) => {
+//   res.json({ token: req.token, user: req.user });
+// });
+
 
 // Middleware to handle URL-encoded data
 // app.use(express.urlencoded({ extended: true })); // Parse incoming requests with URL-encoded payloads, allowing the server to understand form submissions   

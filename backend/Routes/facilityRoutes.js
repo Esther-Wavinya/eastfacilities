@@ -8,7 +8,7 @@ const router = express.Router(); // Create a new router instance
 // GET route to fetch all facilities
 router.get('/', async (req, res) => {
   try { // Fetch all facilities from the database
-    const facilities = await facility.find();   
+    const facilities = await Facility.find();   
     res.status(200).json(facilities); // Respond with the list of facilities
   } catch (error) {
     console.error('❌ Error fetching facilities:', error);       
@@ -64,7 +64,6 @@ router.put('/:id', validateBookingUpdate, async (req, res) => { // Use validatio
     console.error('❌ Error updating facility:', error);
     res.status(500).json({ error: 'Internal Server Error' }); // Respond with a 500 status code and an error message
   }       
-  next(); // Call the next middleware or route handler
 });
 
 
