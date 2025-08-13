@@ -1,27 +1,29 @@
-import express from 'express';
-import Payment from '../Models/Payment.js';
-import { authenticateToken } from '../Middleware/auth.js';
-import Stripe from 'stripe';
-import axios from 'axios';
-import { validatePayment } from '../Middleware/validatePayment';
+// Express router that handles payment operations using Stripe and M-Pesa, including creating payments, verifying their status, and retrieving payment history for authenticated users.
+import express from 'express'; // Sets up the router
+import Payment from '../Models/Payment.js'; // Mongoose model for storing payment records
+import { authenticateToken } from '../Middleware/auth.js'; // Middleware to verify user authentication(likely via JWT)
+import Stripe from 'stripe'; // Stripe SDK for handling card payments
+import axios from 'axios'; // Used to make HTTP requests (e.g., to M-Pesa API)
+import { validatePayment } from '../Middleware/validatePayment'; // Middleware to confirm payment status before saving
+
 
 
 const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Create a payment (Stripe or MPesa)
-router.post('/', authenticateToken, validatePayment, async (req, res) => {
+router.post('/', authenticateToken, validatePayment, async (req, res) => { // authenticates the user, validates the payment using Stripe or M-Pesa, creates a payment record in the database
     try {
         const { method, amount, reference, currency = 'KES', meta = {} } = req.body;
 
         // If Stripe: Create PaymentIntent
         if (method === 'stripe') {
-            const paymentIntent = await stripe.paymentIntents.create({
-                amount: Math.round(amount * 100), // cents
+            const paymentIntent = await stripe.paymentIntents.create({ // Creates a Stripe PaymentIntent
+                amount: Math.round(amount * 100), // Stripe uses cents
                 currency,
                 metadata: { reference }
             });
-            meta.client_secret = paymentIntent.client_secret;
+            meta.client_secret = paymentIntent.client_secret; // Stores the client_secret in meta for frontend use
         }
 
         // If MPesa: send request to STK Push API (example)
@@ -39,12 +41,12 @@ router.post('/', authenticateToken, validatePayment, async (req, res) => {
                 AccountReference: reference,
                 TransactionDesc: "Payment"
             }, {
-                headers: { Authorization: `Bearer ${process.env.MPESA_ACCESS_TOKEN}` }
+                headers: { Authorization: `Bearer ${process.env.MPESA_ACCESS_TOKEN}` } // Sends an STK Push request to M-Pesa
             });
-            meta.mpesa_response = response.data;
+            meta.mpesa_response = response.data; // Stores the response in meta
         }
 
-        // Save payment in Database
+        // Save payment in Database.
         const payment = new Payment({
             user: req.user.id,
             method,
@@ -52,7 +54,7 @@ router.post('/', authenticateToken, validatePayment, async (req, res) => {
             currency,
             reference,
             status: req.paymentStatus,
-            meta: req.meta
+            meta: req.meta // Saves the validated payment with metadata and status
         });
 
         await payment.save();
@@ -65,9 +67,9 @@ router.post('/', authenticateToken, validatePayment, async (req, res) => {
 
 
 // Verify payment status
-router.get('/:id', authenticateToken, async (req, res) => {
+router.get('/:id', authenticateToken, async (req, res) => { // Fetches a specific payment by its MongoDB ID.
     try {
-        const payment = await Payment.findById(req.params.id).populate('user', 'name email');
+        const payment = await Payment.findById(req.params.id).populate('user', 'name email'); // After fetching the payment, it populates the user field with name and email
         if (!payment) return res.status(404).json({ error: 'Payment not found' });
         res.json({ payment });
     } catch (error) {
@@ -77,9 +79,9 @@ router.get('/:id', authenticateToken, async (req, res) => {
 
 
 // Get all payments for a user
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => { // Returns all payments made by the authenticated user. 
     try {
-        const payments = await Payment.find({ user: req.user.id }).sort({ createdAt: -1 });
+        const payments = await Payment.find({ user: req.user.id }).sort({ createdAt: -1 }); // The payments are sorted by the newest to appear first.
         res.status(200).json(payments);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching payments' });
