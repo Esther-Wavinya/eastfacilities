@@ -33,7 +33,6 @@ const bookingSchema = new mongoose.Schema({
     default: Date.now // Default value is the current date and time
   }
 });     
-const Booking = mongoose.model('Booking', bookingSchema); // Create the Booking model from the schema
-export default Booking; // Export the Booking model for use in other parts of the application
+export default mongoose.model("Booking", bookingSchema); // Export the Booking model for use in other parts of the application
 // export { bookingSchema }; // Export the schema if needed for further customization or validation
 // export { Booking }; // Export the Booking model for use in other parts of the application    
