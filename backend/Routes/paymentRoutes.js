@@ -12,6 +12,19 @@ const router = express.Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Create a payment (Stripe or MPesa)
+// authenticateToken checks if the user is logged in. 
+// validatePayment (from express-validator) checks if the request body is valid: 
+// 1. Is the method allowed?
+// 2. Is the amount positive?
+// 3. Is the reference provided?
+// If valid:
+// 1. If method === 'stripe', it creates s Stripe PaymentIntent
+// 2. If method === 'mpesa', it sends an STK Push to Safaricom
+// The response from Stripe or M-Pesa is stored in meta.
+// A new Payment document is created and saved in MongoDB
+// The user can later:
+// 1. View the payment via GET /:id
+// 2. See all their payments via GET /
 router.post('/', authenticateToken, validatePayment, async (req, res) => { // authenticates the user, validates the payment using Stripe or M-Pesa, creates a payment record in the database
     try {
         const { method, amount, reference, currency = 'KES', meta = {} } = req.body;
@@ -89,3 +102,69 @@ router.get('/', authenticateToken, async (req, res) => { // Returns all payments
 });
 
 export default router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
