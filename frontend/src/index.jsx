@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import 'normalize.css';
 import './index.css';
 import App from './App';
-// import { AppProvider } from './context/appContext'; // Assuming you have an AppProvider for context management
+
 
 // Create a root for React 18
 // Create a root element and render the App component within the AppProvider
