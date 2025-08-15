@@ -214,8 +214,82 @@ In your app:
     userRoutes.js
 ```
 
+- Since the React app is currently in the root (with files like src, public, packaje.json), 
+```
+cd frontend
+```
+then move the react files into the frontend folder
+```
+mv src frontend/
+mv public frontend/
+mv package.json frontend/
+mv package-lock.json frontend/
+mv index.html frontend/
+mv eslint.config.js frontend/
+mv .gitignore frontend/
+mv vite.config.js frontend/
+mv README.md frontend/
+```
 
 # Frontend Structure
+```
+/frontend
+  /public
+    index.html                <-- Base HTML template
+    favicon.ico
+  /src
+    /api                      <-- API wrappers for backend routes
+      authApi.js
+      userApi.js
+      facilityApi.js
+      bookingApi.js
+      paymentApi.js
+      dashboardApi.js
+      adminApi.js
+    /components               <-- Reusable UI components
+      Navbar.jsx
+      Sidebar.jsx
+      Footer.jsx
+      ProtectedRoute.jsx       <-- Wrapper for auth-protected pages
+      LoadingSpinner.jsx
+    /context
+      AuthContext.jsx          <-- Handles JWT auth, current user, role
+    /hooks
+      useAuth.js               <-- Custom hook for AuthContext
+    /layouts
+      AdminLayout.jsx          <-- Dashboard layout with sidebar
+      UserLayout.jsx           <-- User-facing layout
+    /pages
+      /auth
+        Login.jsx
+        Register.jsx
+      /user
+        Profile.jsx
+        MyBookings.jsx
+        PaymentHistory.jsx
+      /facility
+        FacilityList.jsx
+        FacilityDetails.jsx
+      /booking
+        NewBooking.jsx
+      /admin
+        UserManagement.jsx
+        FacilityManagement.jsx
+        BookingManagement.jsx
+        PaymentManagement.jsx
+      /dashboard
+        DashboardHome.jsx
+        DashboardStats.jsx
+        SystemHealth.jsx
+      NotFound.jsx
+    /services
+      httpClient.js            <-- Axios base config with JWT header
+    App.jsx
+    main.jsx
+  package.json
+  vite.config.js (or webpack config if CRA)
+```
+
 
 
 
