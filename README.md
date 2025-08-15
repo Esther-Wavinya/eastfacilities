@@ -186,6 +186,37 @@ In your app:
 `cd ..`
 
 
+# Backend Structure
+```
+/backend
+  /controllers
+    adminController.js
+    authController.js
+    bookingController.js
+    dashboardController.js   <-- add this
+    facilityController.js
+    paymentController.js
+    userController.js
+  /middleware
+    auth.js
+  /models
+    User.js
+    Facility.js
+    Booking.js
+    Payment.js
+  /routes
+    adminRoutes.js
+    authRoutes.js
+    bookingRoutes.js
+    dashboardRoutes.js       <-- add this
+    facilityRoutes.js
+    paymentRoutes.js
+    userRoutes.js
+```
+
+
+# Frontend Structure
+
 
 
 

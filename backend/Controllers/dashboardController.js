@@ -98,7 +98,7 @@ export const updateUserRole = async (req, res) => {
   }
 };
 
-// System health check
+//System health check
 export const systemHealthCheck = (req, res) => {
   res.json({
     status: "OK",
