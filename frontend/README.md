@@ -290,6 +290,76 @@ mv README.md frontend/
   vite.config.js (or webpack config if CRA)
 ```
 
+## Google One Tap
+`npm install @react-oauth/google`
+
+```
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+
+export default function GoogleButton() {
+  const handleSuccess = async (credentialResponse) => {
+    const token = credentialResponse.credential;
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/social-login`, {
+      provider: "google",
+      token
+    });
+    console.log(res.data); // Save JWT to context/localStorage
+  };
+
+  return <GoogleLogin onSuccess={handleSuccess} onError={() => console.log("Login Failed")} />;
+}
+```
+
+## Facebook
+`<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>`
+
+```
+window.fbAsyncInit = function() {
+  FB.init({
+    appId: 'YOUR_FB_APP_ID',
+    cookie: true,
+    xfbml: true,
+    version: 'v15.0'
+  });
+};
+
+const handleFBLogin = () => {
+  FB.login(async (response) => {
+    if (response.authResponse) {
+      const token = response.authResponse.accessToken;
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/social-login`, {
+        provider: "facebook",
+        token
+      });
+      console.log(res.data); // Save JWT
+    }
+  }, { scope: 'email' });
+};
+```
+
+## Apple Sign In
+`<script type="module" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>`
+
+```
+const handleAppleLogin = () => {
+  window.AppleID.auth.init({
+    clientId: 'YOUR_APPLE_CLIENT_ID',
+    scope: 'name email',
+    redirectURI: 'https://your-frontend.com/callback',
+    usePopup: true
+  });
+
+  window.AppleID.auth.signIn().then(async (response) => {
+    const token = response.authorization.id_token;
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/social-login`, {
+      provider: "apple",
+      token
+    });
+    console.log(res.data);
+  }).catch(console.error);
+};
+```
 
 
 
