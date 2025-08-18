@@ -84,7 +84,7 @@ export default function Login() {
         </div>
 
         <p className="text-center mt-6 text-sm">
-          Didn’t have an account? <Link to="/register" className="text-green-500 font-semibold">Create an account</Link>
+          Don’t have an account? <Link to="/register" className="text-green-500 font-semibold">Create an account</Link>
         </p>
       </form>
     </div>
