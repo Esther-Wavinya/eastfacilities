@@ -39,11 +39,13 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-white to-green-50">
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
-        <h2 className="text-2xl font-semibold text-center mb-6">Create an Account?</h2>
+    <form class="row row-cols-lg-auto g-3 align-items-center" onSubmit={handleSubmit}>
+      <div class="col-12">
+        <h2 className="text-2xl font-semibold text-center mb-6">Create an Account</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
+      </div>   
+      <div class="col-12">
+        <label for="inputText" class="form-label">Full Name</label>
         <input
           type="text"
           name="name"
@@ -51,8 +53,10 @@ export default function Register() {
           value={form.name}
           onChange={handleChange}
           required
-          className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
-        />
+      />
+      </div>
+      <div class="col-12">
+        <label for="inputEmail4" class="form-label">Email</label>
         <input
           type="email"
           name="email"
@@ -60,8 +64,10 @@ export default function Register() {
           value={form.email}
           onChange={handleChange}
           required
-          className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
         />
+      </div>   
+      <div class="col-12">
+        <label for="inputPassword4" class="form-label">Password</label>
         <input
           type="password"
           name="password"
@@ -69,8 +75,10 @@ export default function Register() {
           value={form.password}
           onChange={handleChange}
           required
-          className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
         />
+      </div>
+      <div>
+        <label for="inputPassword" class="form-label">Password</label>
         <input
           type="password"
           name="confirmPassword"
@@ -80,37 +88,98 @@ export default function Register() {
           required
           className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
         />
-
-        <div className="flex items-center mb-4">
-          <input type="checkbox" id="remember" className="mr-2" />
-          <label htmlFor="remember" className="text-sm">Remember me</label>
+      </div>
+      <div class="row g-3">
+        <div class="form-check" >
+          <input class="form-check-input" type="checkbox" id="autoSizingChcek2" />
+          <label class="form-check-label" for="autoSizingCheck2">Remember me</label>
         </div>
-
+      </div>
+      <div class="row g-3">
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-full transition"
         >
           {loading ? "Signing up..." : "Sign up"}
         </button>
-
-        <p className="text-center my-4 text-gray-500">Or Log in with</p>
-        <div className="flex justify-center space-x-4">
+      </div>
+      <div class="row g-3">
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("google")} className="p-3 bg-gray-100 rounded-full">
             <FaGoogle size={20} />
           </button>
+        </div>
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("facebook")} className="p-3 bg-gray-100 rounded-full">
             <FaFacebookF size={20} />
           </button>
+        </div>
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("apple")} className="p-3 bg-gray-100 rounded-full">
             <FaApple size={20} />
           </button>
         </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-auto">
+          <p>Have an account?</p>
+        </div>
+        <div class="col-auto">
+          <Link to="/login" className="text-green-500 font-semibold">Login</Link>
+        </div>
+      </div>
 
-        <p className="text-center mt-6 text-sm">
-          Didn’t have an account? <Link to="/login" className="text-green-500 font-semibold">Login</Link>
-        </p>
-      </form>
-    </div>
+    </form>
+    // <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-white to-green-50">
+    //   <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
+    //     <h2 className="text-2xl font-semibold text-center mb-6">Create an Account?</h2>
+    //     {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+
+    //     <input
+    //       type="email"
+    //       name="email"
+    //       placeholder="Email"
+    //       value={form.email}
+    //       onChange={handleChange}
+    //       required
+    //       className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+    //     />
+    //     <input
+    //       type="password"
+    //       name="password"
+    //       placeholder="Password"
+    //       value={form.password}
+    //       onChange={handleChange}
+    //       required
+    //       className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+    //     />
+
+
+    //     <div className="flex items-center mb-4">
+    //       <input type="checkbox" id="remember" className="mr-2" />
+    //       <label htmlFor="remember" className="text-sm">Remember me</label>
+    //     </div>
+
+
+
+    //     <p className="text-center my-4 text-gray-500">Or Log in with</p>
+    //     <div className="flex justify-center space-x-4">
+    //       <button type="button" onClick={() => handleSocialLogin("google")} className="p-3 bg-gray-100 rounded-full">
+    //         <FaGoogle size={20} />
+    //       </button>
+    //       <button type="button" onClick={() => handleSocialLogin("facebook")} className="p-3 bg-gray-100 rounded-full">
+    //         <FaFacebookF size={20} />
+    //       </button>
+    //       <button type="button" onClick={() => handleSocialLogin("apple")} className="p-3 bg-gray-100 rounded-full">
+    //         <FaApple size={20} />
+    //       </button>
+    //     </div>
+
+    //     <p className="text-center mt-6 text-sm">
+    //       Didn’t have an account? <Link to="/login" className="text-green-500 font-semibold">Login</Link>
+    //     </p>
+    //   </form>
+    // </div>
   );
 }
