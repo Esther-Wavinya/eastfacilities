@@ -4,6 +4,26 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import "express-async-errors"; 
+import path from "path";
+import { fileURLToPath } from "url";
+
+
+// Needed because you're using ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ... all your API routes above here
+
+// Serve frontend (React build)
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+app.use(express.static(path.join(__dirname, "../frontend/dist"))); // or build folder if CRA
+
+// Any route NOT starting with /api should return index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 dotenv.config();
 const app = express();
