@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Form } from "react-router-dom";
 import authApi from "../../api/authApi";
 import { FaGoogle, FaFacebookF, FaApple } from "react-icons/fa";
 
@@ -31,11 +31,13 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-white to-green-50">
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
+    <form class="row row-cols-lg-auto g-3 align-items-center" onSubmit={handleSubmit}>
+      <div class="col-12">
         <h2 className="text-2xl font-semibold text-center mb-6">Welcome to EAST Facilities</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-
+      </div>   
+      <div class="col-12">
+        <label for="inputEmail4" class="form-label">Email</label>
         <input
           type="email"
           name="email"
@@ -43,8 +45,10 @@ export default function Login() {
           value={form.email}
           onChange={handleChange}
           required
-          className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
         />
+      </div>   
+      <div class="col-12">
+        <label for="inputPassword4" class="form-label">Password</label>
         <input
           type="password"
           name="password"
@@ -52,41 +56,53 @@ export default function Login() {
           value={form.password}
           onChange={handleChange}
           required
-          className="w-full mb-4 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
         />
-
-        <div className="flex items-center justify-between mb-4">
-          <label className="flex items-center text-sm">
-            <input type="checkbox" className="mr-2" /> Remember me
-          </label>
-          <Link to="/forgot-password" className="text-sm text-green-500">Forgot password?</Link>
+      </div>
+      <div class="row g-3">
+        <div class="col-auto">
+          <div class="form-check" >
+            <input class="form-check-input" type="checkbox" id="autoSizingChcek2" />
+            <label class="form-check-label" for="autoSizingCheck2">Remember me</label>
+         </div>
         </div>
-
+        <div class="col-auto">
+          <Link to="/forgot-password">Forgot password?</Link>
+        </div>
+      </div>
+      <div class="row g-3">
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-full transition"
         >
           {loading ? "Logging in..." : "Login"}
         </button>
-
-        <p className="text-center my-4 text-gray-500">Or Log in with</p>
-        <div className="flex justify-center space-x-4">
+      </div>
+      <div class="row g-3">
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("google")} className="p-3 bg-gray-100 rounded-full">
             <FaGoogle size={20} />
           </button>
+        </div>
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("facebook")} className="p-3 bg-gray-100 rounded-full">
             <FaFacebookF size={20} />
           </button>
+        </div>
+        <div class="col-auto">
           <button type="button" onClick={() => handleSocialLogin("apple")} className="p-3 bg-gray-100 rounded-full">
             <FaApple size={20} />
           </button>
         </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-auto">
+          <p>Don't have an account?</p>
+        </div>
+        <div class="col-auto">
+          <Link to="/register" className="text-green-500 font-semibold">Create an account</Link>
+        </div>
+      </div>
 
-        <p className="text-center mt-6 text-sm">
-          Don’t have an account? <Link to="/register" className="text-green-500 font-semibold">Create an account</Link>
-        </p>
-      </form>
-    </div>
+    </form>
   );
 }
