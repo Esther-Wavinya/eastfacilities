@@ -5,7 +5,6 @@ import React from "react";
 export default function DashboardHome() {
   return (
     <p>Welcome to EAST Facilities Dashboard</p>
-
-     
+   
   );
 }
