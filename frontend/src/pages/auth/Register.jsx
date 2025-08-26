@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authApi from "../../api/authApi";
+import logo from "../../assets/images/Logo.png";
 import { FaGoogle, FaFacebookF, FaApple } from "react-icons/fa";
 
 export default function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
-  const [error, setError] = useState("");
+  const [setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,18 +42,16 @@ export default function Register() {
     <section className="background-radial-gradient overflow-hidden">
       <style>{`
         .background-radial-gradient {
-          background-color: hsl(218, 41%, 15%);
+          background-color: #23416b;
           background-image: radial-gradient(650px circle at 0% 0%,
-              hsl(218, 41%, 35%) 15%,
-              hsl(218, 41%, 30%) 35%,
-              hsl(218, 41%, 20%) 75%,
-              hsl(218, 41%, 19%) 80%,
+              #f4992a 15%,
+              #23416b 40%,
+              #23416b 75%,
               transparent 100%),
             radial-gradient(1250px circle at 100% 100%,
-              hsl(218, 41%, 45%) 15%,
-              hsl(218, 41%, 30%) 35%,
-              hsl(218, 41%, 20%) 75%,
-              hsl(218, 41%, 19%) 80%,
+              #f4992a 15%,
+              #23416b 40%,
+              #23416b 75%,
               transparent 100%);
         }
         #radius-shape-1 {
@@ -60,7 +59,7 @@ export default function Register() {
           width: 220px;
           top: -60px;
           left: -130px;
-          background: radial-gradient(#44006b, #ad1fff);
+          background: radial-gradient(#f4992a, #23416b);
           overflow: hidden;
         }
         #radius-shape-2 {
@@ -69,24 +68,47 @@ export default function Register() {
           right: -110px;
           width: 300px;
           height: 300px;
-          background: radial-gradient(#44006b, #ad1fff);
+          background: radial-gradient(#f4992a, #23416b);
           overflow: hidden;
         }
         .bg-glass {
-          background-color: hsla(0, 0%, 100%, 0.9) !important;
+          background-color: rgba(255, 255, 255, 0.92) !important;
           backdrop-filter: saturate(200%) blur(25px);
+          border: 3px solid #f4992a;
+          border-radius: 1rem;
+        }
+        .btn-primary {
+          background-color: #f4992a !important;
+          border: none !important;
+          font-weight: 600;
+        }
+        .btn-primary:disabled {
+          opacity: 0.7;
+        }
+        .form-label {
+          color: #23416b;
+          font-weight: 500;
+        }
+        .text-primary {
+          color: #23416b !important;
+          font-weight: 600;
         }
       `}</style>
 
       <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
         <div className="row gx-lg-5 align-items-center mb-5">
           <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: 10 }}>
-            <h1 className="my-5 display-5 fw-bold ls-tight" style={{ color: "hsl(218, 81%, 95%)" }}>
-              The best offer <br />
-              <span style={{ color: "hsl(218, 81%, 75%)" }}>for your business</span>
-            </h1>
-            <p className="mb-4 opacity-70" style={{ color: "hsl(218, 81%, 85%)" }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga, explicabo inventore exercitationem necessitatibus, suscipit voluptas atque sit velit quibusdam sunt blanditiis voluptate maxime quisquam quas corporis quaerat?
+            <div className="mb-4">
+              <img 
+                src={logo} 
+                alt="Logo" 
+                style={{ height: "50px", objectFit: "contain" }}
+              />
+            </div>
+            <h1 className="my-5 display-8 fw-bold ls-tight" style={{ color: "#fff" }}>
+              Book EAST Facilities</h1>
+            <p className="mb-4 opacity-75" style={{ color: "#f4992a" }}>
+               Perfect Venue for Weddings, Conferences, Team Building, Photoshoots, On-site Accommodation and More
             </p>
           </div>
 
@@ -96,10 +118,7 @@ export default function Register() {
 
             <div className="card bg-glass">
               <div className="card-body px-4 py-5 px-md-5">
-                <form onSubmit={handleSubmit}>
-                  <h2 className="text-center mb-4">Create an Account</h2>
-                  {error && <p className="text-danger text-sm mb-4">{error}</p>}
-
+                <form onSubmit={handleSubmit}>                  
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">Full Name</label>
                     <input
@@ -165,7 +184,7 @@ export default function Register() {
                     {loading ? "Signing up..." : "Sign up"}
                   </button>
 
-                  <div className="text-center mb-3">or sign up with:</div>
+                  <div className="text-center mb-3" style={{ color: "#23416b" }}>or sign up with:</div>
                   <div className="d-flex justify-content-center mb-4">
                     <button type="button" onClick={() => handleSocialLogin("google")} className="btn btn-light mx-1"><FaGoogle /></button>
                     <button type="button" onClick={() => handleSocialLogin("facebook")} className="btn btn-light mx-1"><FaFacebookF /></button>
