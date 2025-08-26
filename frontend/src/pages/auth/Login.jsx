@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authApi from "../../api/authApi";
 import logo from "../../assets/images/logo.png";
+import image2 from "../../assets/images/image 2.jpg";
 import { FaGoogle, FaFacebookF, FaApple } from "react-icons/fa";
 
 export default function Login() {
@@ -32,119 +33,152 @@ export default function Login() {
   };
 
   return (
-    <section className="vh-100">
-      <div className="container-fluid">
-        <div className="row">
-          {/* Left Column */}
-          <div className="col-sm-6 text-black">
-            <div className="px-5 ms-xl-4 d-flex align-items-center">
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="me-3 pt-5 mt-xl-4" 
-                style={{ height: "50px", objectFit: "contain" }} 
-              />
-              <span className="h1 fw-bold mb-0">EAST Facilities</span>
-            </div>
+    <section
+      className="text-center text-lg-start"
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #23416b 60%, #f4992a 100%)",
+        display: "flex",
+        alignItems: "center"
+      }}
+    >
+      <style>
+        {`
+          .cascading-right {
+            margin-right: -50px;
+          }
+          @media (max-width: 991.98px) {
+            .cascading-right {
+              margin-right: 0;
+            }
+          }
+        `}
+      </style>
 
-            <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-              <form style={{ width: "23rem" }} onSubmit={handleSubmit}>
-                <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>
-                  Log in
-                </h3>
+      <div className="container py-4">
+        <div className="row g-0 align-items-center">
+          
+          {/* Left Column (Card with form) */}
+          <div className="col-lg-6 mb-5 mb-lg-0">
+            <div 
+              className="card cascading-right bg-white"
+              style={{
+                backdropFilter: "blur(30px)",
+                borderRadius: "1rem",
+                border: "4px solid #f4992a"
+              }}
+            >
+              <div className="card-body p-5 shadow-5 text-center">
+                <div className="mb-4">
+                  <img 
+                    src={logo} 
+                    alt="Logo" 
+                    style={{ height: "100px", objectFit: "contain" }}
+                  />
+                </div>
+
+                <h3 className="fw-bold mb-4" style={{ color: "#23416b" }}>EAST Facilities</h3>
 
                 {error && <p className="text-danger small mb-4">{error}</p>}
 
-                <div className="form-outline mb-4">
-                  <input
-                    type="email"
-                    id="form2Example18"
-                    name="email"
-                    className="form-control form-control-lg"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <label className="form-label" htmlFor="form2Example18">
-                    Email address
-                  </label>
-                </div>
+                <form style={{ maxWidth: "23rem", margin: "0 auto" }} onSubmit={handleSubmit}>
+                  {/* Email input */}
+                  <div className="form-outline mb-4 text-start">
+                    <label className="form-label" htmlFor="form2Example18">
+                      Email address
+                    </label>
+                    <input
+                      type="email"
+                      id="form2Example18"
+                      name="email"
+                      className="form-control form-control-lg"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="form-outline mb-4">
-                  <input
-                    type="password"
-                    id="form2Example28"
-                    name="password"
-                    className="form-control form-control-lg"
-                    value={form.password}
-                    onChange={handleChange}
-                    required
-                  />
-                  <label className="form-label" htmlFor="form2Example28">
-                    Password
-                  </label>
-                </div>
+                  {/* Password input */}
+                  <div className="form-outline mb-4 text-start">
+                    <label className="form-label" htmlFor="form2Example28">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="form2Example28"
+                      name="password"
+                      className="form-control form-control-lg"
+                      value={form.password}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="pt-1 mb-4">
-                  <button
-                    data-mdb-button-init
-                    data-mdb-ripple-init
-                    className="btn btn-info btn-lg btn-block"
-                    type="submit"
-                    disabled={loading}
-                  >
-                    {loading ? "Logging in..." : "Login"}
-                  </button>
-                </div>
+                  <div className="pt-1 mb-4">
+                    <button
+                      className="btn btn-lg w-100 d-flex justify-content-center align-items-center"
+                      type="submit"
+                      disabled={loading}
+                      style={{
+                        backgroundColor: "#f4992a",
+                        color: "#fff",
+                        border: "none",
+                        fontWeight: "600"
+                      }}
+                    >
+                      {loading ? "Logging in..." : "Login"}
+                    </button>
+                  </div>
 
-                <p className="small mb-5 pb-lg-2">
-                  <Link to="/forgot-password" className="text-muted">
-                    Forgot password?
-                  </Link>
-                </p>
+                  <p className="small mb-4">
+                    <Link to="/forgot-password" className="text-muted">
+                      Forgot password?
+                    </Link>
+                  </p>
 
-                {/* Social Login Buttons */}
-                <div className="d-flex mb-4">
-                  <button
-                    type="button"
-                    onClick={() => handleSocialLogin("google")}
-                    className="btn btn-outline-secondary rounded-circle me-2"
-                  >
-                    <FaGoogle />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleSocialLogin("facebook")}
-                    className="btn btn-outline-secondary rounded-circle me-2"
-                  >
-                    <FaFacebookF />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleSocialLogin("apple")}
-                    className="btn btn-outline-secondary rounded-circle"
-                  >
-                    <FaApple />
-                  </button>
-                </div>
+                  {/* Social Login Buttons */}
+                  <div className="d-flex justify-content-center mb-4">
+                    <button
+                      type="button"
+                      onClick={() => handleSocialLogin("google")}
+                      className="btn btn-outline-secondary rounded-circle me-2"
+                    >
+                      <FaGoogle />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleSocialLogin("facebook")}
+                      className="btn btn-outline-secondary rounded-circle me-2"
+                    >
+                      <FaFacebookF />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleSocialLogin("apple")}
+                      className="btn btn-outline-secondary rounded-circle"
+                    >
+                      <FaApple />
+                    </button>
+                  </div>
 
-                <p>
-                  Don't have an account?{" "}
-                  <Link to="/register" className="link-info">
-                    Register here
-                  </Link>
-                </p>
-              </form>
+                  <p>
+                    Don't have an account?{" "}
+                    <Link to="/register" style={{ color: "#23416b", fontWeight: "600" }}>
+                      Register here
+                    </Link>
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
 
           {/* Right Column (Image) */}
-          <div className="col-sm-6 px-0 d-none d-sm-block">
+          <div className="col-lg-6 mb-5 mb-lg-0">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
-              alt="Login"
-              className="w-100 vh-100"
-              style={{ objectFit: "cover", objectPosition: "left" }}
+              src={image2}
+              className="w-100 rounded-4 shadow-4"
+              alt="Login illustration"
+              style={{ objectFit: "cover", height: "100%", minHeight: "400px", borderRadius: "1rem" }}
             />
           </div>
         </div>
