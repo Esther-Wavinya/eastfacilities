@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { AuthProvider } from './context/AuthProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -13,14 +14,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+  <AuthProvider>
     {/* <AppProvider> */}
     {/* Uncomment the line below if you have an AppProvider for context management */}
     {/* <AppProvider> */}
     {/* <App /> */}
     {/* </AppProvider> */}
       <App />
-  </React.StrictMode>
+  </AuthProvider>
 );
 
 

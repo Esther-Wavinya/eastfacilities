@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authApi from "../../api/authApi";
+import { useAuth } from "../../context/AuthProvider.jsx";
 import logo from "../../assets/images/Logo.png";
 import { FaGoogle, FaFacebookF, FaApple } from "react-icons/fa";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { loginWithGoogle, loginWithFacebook, loginWithApple, loadingSDK } = useAuth();
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
-  const [setError] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,8 +36,23 @@ export default function Register() {
     }
   };
 
-  const handleSocialLogin = (provider) => {
-    window.location.href = `${import.meta.env.VITE_API_URL}/auth/${provider}`;
+  const handleSocialLogin = async (provider) => {
+    try {
+      setError("");
+      let tokenResponse;
+      if (provider === "google") tokenResponse = await loginWithGoogle();
+      if (provider === "facebook") tokenResponse = await loginWithFacebook();
+      if (provider === "apple") tokenResponse = await loginWithApple();
+
+      // Ensure token is stored (AuthProvider should handle this, but extra safety)
+      if (tokenResponse?.token) {
+        localStorage.setItem("token", tokenResponse.token);
+      }
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      setError("Social login failed");
+    }
   };
 
   return (
@@ -106,9 +123,10 @@ export default function Register() {
               />
             </div>
             <h1 className="my-5 display-8 fw-bold ls-tight" style={{ color: "#fff" }}>
-              Book EAST Facilities</h1>
+              Book EAST Facilities
+            </h1>
             <p className="mb-4 opacity-75" style={{ color: "#f4992a" }}>
-               Perfect Venue for Weddings, Conferences, Team Building, Photoshoots, On-site Accommodation and More
+              Perfect Venue for Weddings, Conferences, Team Building, Photoshoots, On-site Accommodation and More
             </p>
           </div>
 
@@ -118,6 +136,7 @@ export default function Register() {
 
             <div className="card bg-glass">
               <div className="card-body px-4 py-5 px-md-5">
+                {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit}>                  
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">Full Name</label>
@@ -186,9 +205,30 @@ export default function Register() {
 
                   <div className="text-center mb-3" style={{ color: "#23416b" }}>or sign up with:</div>
                   <div className="d-flex justify-content-center mb-4">
-                    <button type="button" onClick={() => handleSocialLogin("google")} className="btn btn-light mx-1"><FaGoogle /></button>
-                    <button type="button" onClick={() => handleSocialLogin("facebook")} className="btn btn-light mx-1"><FaFacebookF /></button>
-                    <button type="button" onClick={() => handleSocialLogin("apple")} className="btn btn-light mx-1"><FaApple /></button>
+                    <button 
+                      type="button" 
+                      onClick={() => handleSocialLogin("google")} 
+                      className="btn btn-light mx-1" 
+                      disabled={loadingSDK}
+                    >
+                      <FaGoogle />
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={() => handleSocialLogin("facebook")} 
+                      className="btn btn-light mx-1" 
+                      disabled={loadingSDK}
+                    >
+                      <FaFacebookF />
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={() => handleSocialLogin("apple")} 
+                      className="btn btn-light mx-1" 
+                      disabled={loadingSDK}
+                    >
+                      <FaApple />
+                    </button>
                   </div>
 
                   <p className="text-center">
