@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 
+
 // Create a root for React 18
 // Create a root element and render the App component within the AppProvider
 // This allows for context management across the application

@@ -320,3 +320,167 @@ ul {
   }
 }
 
+/* Navbar container */
+.custom-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+  flex-wrap: wrap;
+}
+
+/* Left section */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #23416b;
+}
+
+/* Toggler button */
+.navbar-toggler {
+  background: none;
+  border: none;
+  display: none; /* Hidden on desktop */
+  cursor: pointer;
+}
+
+/* Center search section */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-center.show {
+  display: flex;
+  width: 100%;
+  margin-top: 0.5rem;
+  order: 3; /* Pushes to bottom on small screens */
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 0.4rem 1rem;
+  background: #f8f9fa;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Right section */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 150px;
+}
+
+.icon-btn {
+  position: relative;
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+/* Dropdowns */
+.dropdown {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  z-index: 1000;
+  min-width: 160px;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Avatar button */
+.avatar-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.avatar-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Responsive: show toggler on small screens */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-center {
+    display: none; /* Hidden until toggled */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
