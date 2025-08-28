@@ -13,28 +13,19 @@ html {
 
 :root {
   /* colors */
-  --primary-50: #e0fcff;
-  --primary-100: #bef8fd;
-  --primary-200: #87eaf2;
-  --primary-300: #54d1db;
-  --primary-400: #38bec9;
-  --primary-500: #2cb1bc;
-  --primary-600: #14919b;
-  --primary-700: #0e7c86;
-  --primary-800: #0a6c74;
-  --primary-900: #044e54;
+  --primary-100: #dce2ec;
+  --primary-300: #7f92b1;
+  --primary-500: #23416b;  /* Main Blue */
+  --primary-700: #182d49;
+  --primary-900: #0e1b2e;
 
-  /* grey */
-  --grey-50: #f0f4f8;
-  --grey-100: #d9e2ec;
-  --grey-200: #bcccdc;
-  --grey-300: #9fb3c8;
-  --grey-400: #829ab1;
-  --grey-500: #627d98;
-  --grey-600: #486581;
-  --grey-700: #334e68;
-  --grey-800: #243b53;
-  --grey-900: #102a43;
+
+  --accent-100: #fce7c9;
+  --accent-300: #f9b96e;
+  --accent-500: #f4992a;  /* Main Orange */
+  --accent-700: #d37812;
+  --accent-900: #a45b0d;
+
   /* rest of the colors */
   --black: #222;
   --white: #fff;
@@ -60,13 +51,9 @@ html {
   --breakpoint-lg: 992px;
   --nav-height: 6rem;
   /* box shadow*/
-  --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-1: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-2: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-3: 0 10px 15px rgba(0,0,0,0.1);
 }
 
 body {
@@ -147,19 +134,16 @@ ul {
 
 .btn {
   cursor: pointer;
-  color: var(--white);
+  color: #fff;
   background: var(--primary-500);
-  border: transparent;
+  border: none;
   border-radius: var(--borderRadius);
-  letter-spacing: var(--letterSpacing);
   padding: 0.375rem 0.75rem;
   box-shadow: var(--shadow-2);
   transition: var(--transition);
-  text-transform: capitalize;
-  display: inline-block;
 }
 .btn:hover {
-  background: var(--primary-700);
+  background: var(--accent-500);
   box-shadow: var(--shadow-3);
 }
 .btn-hipster {
@@ -326,11 +310,34 @@ ul {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background-color: #ffffff;
+  background-color: var(--primary-700);
+  color: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   position: relative;
   flex-wrap: wrap;
 }
+
+/* Ensure all navbar icons are white */
+.custom-navbar .icon-btn,
+.custom-navbar .search-btn,
+.custom-navbar .navbar-toggler,
+.custom-navbar .avatar-btn {
+  color: #fff;
+}
+
+.custom-navbar .search-btn {
+  border-color: #fff;           /* optional, if you want white border */
+  background: transparent;      /* optional, to keep it clean on blue navbar */
+}
+
+.custom-navbar .icon-btn svg,
+.custom-navbar .search-btn svg,
+.custom-navbar .navbar-toggler svg,
+.custom-navbar .avatar-btn img {
+  color: #fff;
+  fill: #fff;
+}
+
 
 /* Left section */
 .navbar-left {
@@ -348,7 +355,7 @@ ul {
 .navbar-brand {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #23416b;
+  color: #fff;
 }
 
 /* Toggler button */
@@ -473,6 +480,7 @@ ul {
 /* Layout wrapper */
 .layout-container {
   display: flex;
+  flex: 1;
   flex-direction: column;
   height: 100vh;
 }
@@ -488,7 +496,7 @@ ul {
 
 /* Sidebar styles */
 .sidebar {
-  background-color: #23416b;
+  background-color: #f4992a;
   color: #fff;
   width: 220px;
   min-width: 220px;
@@ -611,17 +619,98 @@ ul {
   text-decoration: underline;
 }
 
+/* === FOOTER STYLES === */
+.custom-footer {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 1rem;
+}
 
+.footer-row {
+  display: flex;
+  justify-content: center; /* center the entire footer horizontally */
+  align-items: center; /* vertical alignment */
+  gap: 3rem;
+  flex-wrap: wrap; /* wrap on small screens */
+  text-align: center;
+}
 
+/* Phone + email stacked vertically */
+.footer-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.footer-icons .footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
 
+.footer-icons .footer-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--text-dark);
+}
 
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+}
 
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .footer-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+/* === FOOTER STYLES === */
+.custom-footer {
+  width: 100%;
+  background-color: var(--primary-900);
+  color: #fff;
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: center;   /* horizontally center container */
+  align-items: center;       /* vertically center content if footer is taller */
+}
 
+.footer-icons {
+  display: flex;
+  flex-direction: row;    /* stack phone and email vertically */
+  align-items: center;
+  gap: 0.75rem;
+}
 
+.footer-icons .footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
 
+.footer-icons .footer-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--text-dark);
+}
 
-
-
-
-
+/* Responsive: no changes needed, it’s already column layout */
+@media (max-width: 600px) {
+  .footer-icons .footer-btn {
+    font-size: 0.95rem;
+  }
+}

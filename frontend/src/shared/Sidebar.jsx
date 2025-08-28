@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Navbar from "./Navbar"; // adjust the path as needed
+import Navbar from "./Navbar";
 import { FaHome, FaUsers, FaChartBar, FaCog, FaChevronDown } from "react-icons/fa";
 import "../index.css";
 
 export default function SidebarLayout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const [facilitiesOpen, setFacilitiesOpen] = useState(false);
+  const [tenantsOpen, setTenantsOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
 
   return (
@@ -16,15 +17,11 @@ export default function SidebarLayout({ children }) {
       <div className="layout-main">
         {/* Sidebar */}
         <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
-          <button 
-            className="sidebar-toggle" 
-            onClick={() => setCollapsed(!collapsed)}
-          >
+          <button className="sidebar-toggle" onClick={() => setCollapsed(!collapsed)}>
             {collapsed ? "→" : "←"}
           </button>
 
           <ul className="sidebar-menu">
-            {/* Home */}
             <li>
               <a href="#">
                 <FaHome className="icon" />
@@ -40,15 +37,33 @@ export default function SidebarLayout({ children }) {
               >
                 <FaUsers className="icon" />
                 <span className="label">Facilities</span>
-                <FaChevronDown 
-                  className={`chevron ${facilitiesOpen ? "rotate" : ""}`} 
-                />
+                <FaChevronDown className={`chevron ${facilitiesOpen ? "rotate" : ""}`} />
               </button>
               {facilitiesOpen && !collapsed && (
                 <ul className="dropdown-list">
                   <li><a href="#">Grounds</a></li>
                   <li><a href="#">Halls</a></li>
                   <li><a href="#">Rooms</a></li>
+                </ul>
+              )}
+            </li>
+
+            {/* Tenants Dropdown */}
+            <li>
+              <button 
+                className="dropdown-btn" 
+                onClick={() => setTenantsOpen(!tenantsOpen)}
+              >
+                <FaUsers className="icon" />
+                <span className="label">Tenants</span>
+                <FaChevronDown className={`chevron ${tenantsOpen ? "rotate" : ""}`} />
+              </button>
+              {tenantsOpen && !collapsed && (
+                <ul className="dropdown-list">
+                  <li><a href="#">KAG Sacco Limited</a></li>
+                  <li><a href="#">KAG Cooperative Housing</a></li>
+                  <li><a href="#">Safina House</a></li>
+                  <li><a href="#">KAG Extension</a></li>
                 </ul>
               )}
             </li>
@@ -61,9 +76,7 @@ export default function SidebarLayout({ children }) {
               >
                 <FaChartBar className="icon" />
                 <span className="label">Dashboard Stats</span>
-                <FaChevronDown 
-                  className={`chevron ${statsOpen ? "rotate" : ""}`} 
-                />
+                <FaChevronDown className={`chevron ${statsOpen ? "rotate" : ""}`} />
               </button>
               {statsOpen && !collapsed && (
                 <ul className="dropdown-list">
@@ -86,9 +99,7 @@ export default function SidebarLayout({ children }) {
         </aside>
 
         {/* Main Content */}
-        <main className="dashboard-content">
-          {children}
-        </main>
+        <main className="dashboard-content">{children}</main>
       </div>
     </div>
   );
