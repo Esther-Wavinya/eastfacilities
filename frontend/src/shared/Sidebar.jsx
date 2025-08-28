@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { FaHome, FaUsers, FaChartBar, FaCog, FaChevronDown } from "react-icons/fa";
 import "../index.css";
@@ -23,10 +24,10 @@ export default function SidebarLayout({ children }) {
 
           <ul className="sidebar-menu">
             <li>
-              <a href="#">
+              <Link to="/dashboard">
                 <FaHome className="icon" />
                 <span className="label">Home</span>
-              </a>
+              </Link>
             </li>
 
             {/* Facilities Dropdown */}
