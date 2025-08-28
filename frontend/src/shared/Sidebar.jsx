@@ -1,34 +1,95 @@
-import React from "react";
-import { FiUser, FiHome, FiBarChart2 } from "react-icons/fi";
-import logo from "../assets/images/logo.png";
+import { useState } from "react";
+import Navbar from "./Navbar"; // adjust the path as needed
+import { FaHome, FaUsers, FaChartBar, FaCog, FaChevronDown } from "react-icons/fa";
+import "../index.css";
 
-export default function Sidebar() {
+export default function SidebarLayout({ children }) {
+  const [collapsed, setCollapsed] = useState(false);
+  const [facilitiesOpen, setFacilitiesOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
+
   return (
-    <aside className="h-screen w-64 bg-white shadow flex flex-col">
-      {/* Top: Logo + Title */}
-      <div className="flex items-center gap-3 px-6 py-4 border-b">
-        <img src={logo} alt="Logo" className="h-10 w-10 object-contain" />
-        <span className="text-xl font-semibold text-gray-800">
-          EAST Facilities
-        </span>
+    <div className="layout-container">
+      {/* Top Navbar */}
+      <Navbar />
+
+      <div className="layout-main">
+        {/* Sidebar */}
+        <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+          <button 
+            className="sidebar-toggle" 
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            {collapsed ? "→" : "←"}
+          </button>
+
+          <ul className="sidebar-menu">
+            {/* Home */}
+            <li>
+              <a href="#">
+                <FaHome className="icon" />
+                <span className="label">Home</span>
+              </a>
+            </li>
+
+            {/* Facilities Dropdown */}
+            <li>
+              <button 
+                className="dropdown-btn" 
+                onClick={() => setFacilitiesOpen(!facilitiesOpen)}
+              >
+                <FaUsers className="icon" />
+                <span className="label">Facilities</span>
+                <FaChevronDown 
+                  className={`chevron ${facilitiesOpen ? "rotate" : ""}`} 
+                />
+              </button>
+              {facilitiesOpen && !collapsed && (
+                <ul className="dropdown-list">
+                  <li><a href="#">Grounds</a></li>
+                  <li><a href="#">Halls</a></li>
+                  <li><a href="#">Rooms</a></li>
+                </ul>
+              )}
+            </li>
+
+            {/* Dashboard Stats Dropdown */}
+            <li>
+              <button 
+                className="dropdown-btn" 
+                onClick={() => setStatsOpen(!statsOpen)}
+              >
+                <FaChartBar className="icon" />
+                <span className="label">Dashboard Stats</span>
+                <FaChevronDown 
+                  className={`chevron ${statsOpen ? "rotate" : ""}`} 
+                />
+              </button>
+              {statsOpen && !collapsed && (
+                <ul className="dropdown-list">
+                  <li><a href="#">Users</a></li>
+                  <li><a href="#">Bookings</a></li>
+                  <li><a href="#">Payments</a></li>
+                  <li><a href="#">Revenue</a></li>
+                </ul>
+              )}
+            </li>
+
+            {/* Settings */}
+            <li>
+              <a href="#">
+                <FaCog className="icon" />
+                <span className="label">Settings</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        {/* Main Content */}
+        <main className="dashboard-content">
+          {children}
+        </main>
       </div>
-
-      {/* Navigation items */}
-      <nav className="flex flex-col mt-6">
-        <SidebarItem icon={<FiUser />} label="Profile" />
-        <SidebarItem icon={<FiHome />} label="Facilities" />
-        <SidebarItem icon={<FiBarChart2 />} label="Dashboard Stats" />
-      </nav>
-    </aside>
-  );
-}
-
-// Reusable SidebarItem component
-function SidebarItem({ icon, label }) {
-  return (
-    <button className="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition">
-      <span className="text-xl">{icon}</span>
-      <span className="text-md font-medium">{label}</span>
-    </button>
+    </div>
   );
 }

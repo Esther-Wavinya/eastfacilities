@@ -470,6 +470,147 @@ ul {
 }
 
 
+/* Layout wrapper */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Navbar already styled in index.css from your previous step */
+
+/* Main area: sidebar + content */
+.layout-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #23416b;
+  color: #fff;
+  width: 220px;
+  min-width: 220px;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+  min-width: 60px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: right;
+  font-size: 1rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #1b3253;
+}
+
+.sidebar-menu .icon {
+  margin-right: 10px;
+  min-width: 20px;
+}
+
+.sidebar.collapsed .label {
+  display: none;
+}
+
+/* Main dashboard content */
+.dashboard-content {
+  flex: 1;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Responsive sidebar: auto collapse on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    left: -220px;
+  }
+  .sidebar.collapsed {
+    left: 0;
+    width: 220px;
+  }
+  .layout-main {
+    flex-direction: column;
+  }
+  .dashboard-content {
+    margin-left: 0;
+  }
+}
+
+
+/* Dropdown buttons inside sidebar */
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.dropdown-btn:hover {
+  background-color: #1b3253;
+}
+
+.chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* Nested dropdown list */
+.dropdown-list {
+  list-style: none;
+  padding-left: 2rem;
+  background-color: #1b3253;
+}
+.dropdown-list li a {
+  display: block;
+  color: #fff;
+  padding: 0.6rem 0;
+  text-decoration: none;
+}
+.dropdown-list li a:hover {
+  text-decoration: underline;
+}
+
 
 
 
