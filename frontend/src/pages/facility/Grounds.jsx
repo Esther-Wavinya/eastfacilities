@@ -23,104 +23,82 @@ const grounds = [
   {
     id: 3,
     name: "Teambuilding Grounds",
-    capacity: 200,
+    capacity: 150,
     price: 15000,
     image: outdoorImg,
   },
   {
-    id: 3,
+    id: 4,
     name: "Basketball Pitch",
-    capacity: 200,
+    capacity: 100,
     price: 15000,
     image: basketballImg,
   },
   {
-    id: 2,
-    name: "Conference/Meeting Room",
+    id: 5,
+    name: "Conference / Meeting Room",
     capacity: 50,
     price: 5000,
     image: conferenceImg,
   },
   {
-    id: 2,
-    name: "Birthday/Banquet Hall",
-    capacity: 50,
+    id: 6,
+    name: "Birthday / Banquet Hall",
+    capacity: 80,
     price: 5000,
     image: conferenceImg,
   },
 ];
 
 export default function GroundsFacility() {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedGround, setSelectedGround] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    date: "",
-    timeSlot: "Full-Day",
-    resources: [],
+    checkIn: "",
+    checkOut: "",
     message: "",
   });
 
-  const timeSlots = ["Hourly", "Half-Day", "Full-Day", "Multi-Day"];
-  const resourcesAvailable = ["Projector", "Chairs", "PA System", "Tables"];
-
-  const openModal = (ground) => {
-    setSelectedGround(ground);
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setSelectedGround(null);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      date: "",
-      timeSlot: "Full-Day",
-      resources: [],
-      message: "",
-    });
+  const openModal = (groundName) => {
+    setSelectedRoom(groundName);
+    setModalOpen(true);
   };
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === "checkbox") {
-      setFormData((prev) => ({
-        ...prev,
-        resources: checked
-          ? [...prev.resources, value]
-          : prev.resources.filter((r) => r !== value),
-      }));
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    alert(
-      `Booking Confirmed!
-Ground: ${selectedGround.name}
+    alert(`
+Booking Confirmed!
+Facility: ${selectedRoom}
 Name: ${formData.name}
-Date: ${formData.date}
-Time Slot: ${formData.timeSlot}`
-    );
+Check-In: ${formData.checkIn}
+Check-Out: ${formData.checkOut}
+    `);
 
-    // TODO: Backend integration + conflict detection
-    closeModal();
+    setModalOpen(false);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      checkIn: "",
+      checkOut: "",
+      message: "",
+    });
   };
 
   return (
     <div className="facility-page">
       <h1>Event Grounds & Venues</h1>
 
-      {/* ===== GROUNDS CARDS ===== */}
+      {/* ===== 3 × 3 GRID ===== */}
       <div className="cards-grid">
         {grounds.map((ground) => (
           <div key={ground.id} className="facility-card">
@@ -128,22 +106,22 @@ Time Slot: ${formData.timeSlot}`
             <h3>{ground.name}</h3>
             <p>Capacity: {ground.capacity} people</p>
             <p className="price">KES {ground.price.toLocaleString()}</p>
-            <button className="card-btn" onClick={() => openModal(ground)}>
+            <button className="card-btn" onClick={() => openModal(ground.name)}>
               Book Now
             </button>
           </div>
         ))}
       </div>
 
-      {/* ===== MODAL ===== */}
-      {showModal && (
+      {/* ===== MODAL (USING YOUR FORM) ===== */}
+      {modalOpen && (
         <div className="modal-overlay">
-          <div className="modal">
-            <h2>Book {selectedGround.name}</h2>
+          <div className="modal-content">
+            <h2>Book {selectedRoom}</h2>
 
             <form onSubmit={handleSubmit} className="booking-form">
               <label>
-                Name
+                Name:
                 <input
                   type="text"
                   name="name"
@@ -154,7 +132,7 @@ Time Slot: ${formData.timeSlot}`
               </label>
 
               <label>
-                Email
+                Email:
                 <input
                   type="email"
                   name="email"
@@ -165,7 +143,7 @@ Time Slot: ${formData.timeSlot}`
               </label>
 
               <label>
-                Phone
+                Phone:
                 <input
                   type="tel"
                   name="phone"
@@ -176,46 +154,29 @@ Time Slot: ${formData.timeSlot}`
               </label>
 
               <label>
-                Date
+                Check-In:
                 <input
                   type="date"
-                  name="date"
-                  value={formData.date}
+                  name="checkIn"
+                  value={formData.checkIn}
                   onChange={handleChange}
                   required
                 />
               </label>
 
               <label>
-                Time Slot
-                <select
-                  name="timeSlot"
-                  value={formData.timeSlot}
+                Check-Out:
+                <input
+                  type="date"
+                  name="checkOut"
+                  value={formData.checkOut}
                   onChange={handleChange}
-                >
-                  {timeSlots.map((slot) => (
-                    <option key={slot}>{slot}</option>
-                  ))}
-                </select>
+                  required
+                />
               </label>
 
-              <fieldset>
-                <legend>Resources</legend>
-                {resourcesAvailable.map((r) => (
-                  <label key={r}>
-                    <input
-                      type="checkbox"
-                      value={r}
-                      checked={formData.resources.includes(r)}
-                      onChange={handleChange}
-                    />
-                    {r}
-                  </label>
-                ))}
-              </fieldset>
-
               <label>
-                Additional Notes
+                Additional Notes:
                 <textarea
                   name="message"
                   value={formData.message}
@@ -223,14 +184,14 @@ Time Slot: ${formData.timeSlot}`
                 />
               </label>
 
-              <div className="modal-actions">
+              <div className="modal-buttons">
                 <button type="submit" className="card-btn">
                   Submit Booking
                 </button>
                 <button
                   type="button"
-                  className="cancel-btn"
-                  onClick={closeModal}
+                  className="card-btn cancel"
+                  onClick={() => setModalOpen(false)}
                 >
                   Cancel
                 </button>

@@ -865,216 +865,56 @@ ul {
   margin-bottom: 1.5rem;
   text-align: center;
 }
-
-/* ================================
-   GROUNDS CARDS GRID
-================================ */
-
+/* ===== GROUNDS GRID ===== */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-/* Individual ground card */
+/* Card styling */
 .facility-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: var(--shadow-2);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .facility-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-3);
 }
 
 .facility-card img {
   width: 100%;
-  height: 190px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
 }
 
 .facility-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: var(--primary-700);
-  padding: 0.75rem 1rem 0;
-}
-
-.facility-card p {
-  padding: 0 1rem;
-  font-size: 0.95rem;
-  margin-bottom: 0.4rem;
 }
 
 .facility-card .price {
   font-weight: bold;
-  color: var(--accent-700);
-  padding: 0 1rem;
+  color: var(--accent-500);
 }
 
-/* Book button */
-.facility-card .card-btn {
-  margin: 1rem;
-  margin-top: auto;
-  background: var(--primary-500);
-  color: var(--white);
-  border-radius: var(--borderRadius);
-}
-
-.facility-card .card-btn:hover {
-  background: var(--accent-500);
-}
-
-/* ================================
-   MODAL OVERLAY
-================================ */
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(14, 27, 46, 0.65); /* primary-900 tint */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-/* ================================
-   MODAL CONTAINER
-================================ */
-
-.modal {
-  background: var(--white);
-  width: 95%;
-  max-width: 520px;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow-3);
-  animation: modalFade 0.25s ease-in-out;
-}
-
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* ===== RESPONSIVE FALLBACK ===== */
+@media (max-width: 992px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
   }
 }
-
-.modal h2 {
-  margin-bottom: 1rem;
-  color: var(--primary-700);
-  border-bottom: 2px solid var(--accent-500);
-  padding-bottom: 0.5rem;
-}
-
-/* ================================
-   BOOKING FORM (MODAL)
-================================ */
-
-.booking-form label {
-  display: block;
-  font-size: var(--small-text);
-  margin-bottom: 0.75rem;
-  color: var(--primary-900);
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-  width: 100%;
-  padding: 0.45rem 0.6rem;
-  border-radius: var(--borderRadius);
-  border: 1px solid var(--primary-300);
-  margin-top: 0.25rem;
-  font-family: var(--bodyFont);
-}
-
-.booking-form input:focus,
-.booking-form select:focus,
-.booking-form textarea:focus {
-  outline: none;
-  border-color: var(--primary-500);
-}
-
-/* Textarea */
-.booking-form textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-/* ================================
-   FIELDSET (RESOURCES)
-================================ */
-
-.booking-form fieldset {
-  border: 1px solid var(--primary-300);
-  border-radius: var(--borderRadius);
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.booking-form legend {
-  font-size: var(--small-text);
-  font-weight: bold;
-  color: var(--primary-700);
-}
-
-.booking-form fieldset label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: var(--small-text);
-  margin-bottom: 0.3rem;
-}
-
-/* ================================
-   MODAL ACTION BUTTONS
-================================ */
-
-.modal-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.modal-actions .card-btn {
-  flex: 1;
-}
-
-.modal-actions .cancel-btn {
-  flex: 1;
-  background: var(--red-light);
-  color: var(--red-dark);
-  border-radius: var(--borderRadius);
-}
-
-.modal-actions .cancel-btn:hover {
-  background: var(--red-dark);
-  color: var(--white);
-}
-
-/* ================================
-   RESPONSIVE TWEAKS
-================================ */
 
 @media (max-width: 600px) {
-  .facility-page {
-    padding: 1rem;
-  }
-
-  .facility-card img {
-    height: 160px;
-  }
-
-  .modal {
-    padding: 1.25rem;
+  .cards-grid {
+    grid-template-columns: 1fr; /* 1 column on phones */
   }
 }
