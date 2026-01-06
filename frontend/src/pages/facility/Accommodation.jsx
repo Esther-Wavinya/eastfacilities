@@ -1,11 +1,10 @@
-import dormImage from "../../assets/images/bedroom1.jpg";
-import twinImage from "../../assets/images/bedroom2.jpg";
-import suiteImage from "../../assets/images/bedroom3.jpg";
+import dormImage from "../../assets/images/bedroom 1.jpg";
+import twinImage from "../../assets/images/bedroom 3.jpg";
+import suiteImage from "../../assets/images/bedroom 4.jpg";
 import { useState } from "react";
 import SidebarLayout from "../../shared/Sidebar";
 import Footer from "../../shared/Footer";
 import "../../index.css"; 
-import image8 from "../../assets/images/image 8.jpg"; // Grounds
 
 
 export default function DashboardHome() {
@@ -41,33 +40,20 @@ export default function DashboardHome() {
   const cards = [
     {
       id: 1,
-      image: image8,
-      title: "Grounds",
-      description: (
-        <ul>
-          <li>Outdoor/Graduation events/Wedding receptions: KES 25,000 + Caution Money KES 10,000</li>
-          <li>Conference/Meeting rooms: KES 5,000</li>
-          <li>Basketball pitch events: KES 15,000</li>
-        </ul>
-      ),
-      link: "/facility/grounds",
-    },
-    {
-      id: 2,
       image: dormImage,
       title: "Dorm-Style Bunk Beds",
       description: "KES 500 per person per night",
       roomType: "Dorm-Style Bunk Beds",
     },
     {
-      id: 3,
+      id: 2,
       image: twinImage,
       title: "Standard Twin Room",
       description: "KES 1,500 per night",
       roomType: "Standard Twin Room",
     },
     {
-      id: 4,
+      id: 3,
       image: suiteImage,
       title: "Furnished Suite",
       description: "KES 2,500 per night",
