@@ -42,9 +42,12 @@ export default function SidebarLayout({ children }) {
               </button>
               {facilitiesOpen && !collapsed && (
                 <ul className="dropdown-list">
-                  <li><a href="#">Grounds</a></li>
-                  <li><a href="#">Halls</a></li>
-                  <li><a href="#">Rooms</a></li>
+                  <li>
+                    <Link to="/facility/accommodation">Accommodation</Link>
+                  </li>
+                  <li>
+                    <Link to="/facility/grounds">Grounds</Link>
+                  </li>
                 </ul>
               )}
             </li>
