@@ -39,26 +39,27 @@ export default function DashboardHome() {
 
   return (
     <SidebarLayout>
-      <div className="card-grid">
-        {cards.map((card) => (
-          <div key={card.id} className="custom-card">
-            <img src={card.image} alt={card.title} className="card-image" />
-            <div className="card-body">
-              <h3 className="card-title">{card.title}</h3>
+      <div className="facility-page">
+        <h1>Dashboard</h1>
+
+        <div className="cards-grid">
+          {cards.map((card) => (
+            <div key={card.id} className="facility-card">
+              <img src={card.image} alt={card.title} />
+              <h3>{card.title}</h3>
               <div className="card-description">{card.description}</div>
-              <div className="card-footer">
-                <button
-                  className="card-btn"
-                  onClick={() => navigate(card.link)}
-                >
-                  Book Now
-                </button>
-              </div>
+              <button
+                className="card-btn"
+                onClick={() => navigate(card.link)}
+              >
+                View & Book
+              </button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <Footer />
       </div>
-      <Footer />
     </SidebarLayout>
   );
 }

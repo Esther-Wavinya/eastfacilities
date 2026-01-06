@@ -755,7 +755,7 @@ ul {
 
 .card-title {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 900;
   margin-bottom: 8px;
   color: var(--accent-color);
 }
@@ -850,8 +850,6 @@ ul {
 }
 
 
-
-
 /* ================================
    GROUNDS / FACILITIES PAGE
 ================================ */
@@ -918,3 +916,11 @@ ul {
     grid-template-columns: 1fr; /* 1 column on phones */
   }
 }
+
+
+
+
+
+
+
+
